@@ -31,7 +31,7 @@ def calculate_rmsd(pdb1, pdb2):
     common_res_ids = sorted(res_ids1.intersection(res_ids2))
     
     if not common_res_ids:
-        raise ValueError("Немає спільних Cα-атомів у структурах. Перевірте файли.")
+        raise ValueError("Немає спільних Cα-атомів у структурах.")
     
     atoms1 = []
     atoms2 = []
@@ -184,7 +184,7 @@ def analyze_protein(exp_pdb, af_pdb, name):
         mean_plddt, std_plddt, plddt_list = extract_plddt(af_pdb)
         print(f"Середнє pLDDT: {mean_plddt:.2f} (std: {std_plddt:.2f}) — >90: стабільні зони")
     except:
-        print("Помилка в витягненні pLDDT. Перевірте, чи AlphaFold файл має B-фактори.")
+        print("Помилка в витягненні pLDDT. Треба перевірити, чи AlphaFold файл має B-фактори.")
     
     print("Мінімальне pLDDT: ", min(plddt_list), "на позиції", np.argmin(plddt_list))
 
@@ -244,4 +244,4 @@ for name, (exp, af) in proteins.items():
     if os.path.exists(exp) and os.path.exists(af):
         analyze_protein(exp, af, name)
     else:
-        print(f"Файли для {name} не знайдено. Перевір імена.")
+        print(f"Файли для {name} не знайдено.")
